@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="https://www.aureos.com/wp-content/uploads/2025/02/AUREOS-FAVicon_512px-x-512px-150x150.png" sizes="32x32">
+  <link rel="stylesheet" href="./assets/css/main.css">
+  <link rel="stylesheet" href="./assets/css/test.css">
+  <script src="./js/variables.js"></script>
+  <script src="./js/test.js"></script>
+  <title>Aureos ACC Training Portal - Level 2 Knowledge Check</title>
+</head>
+<body>
+    <div class="container fade-in">
+      <h1>ACC Level 2 Knowledge Check</h1>
+      <form id="quizForm" value="level1">
+        <!-- Multiple choice questions -->
+        <div class="question">
+          <h3>1</h3><p>Which of the following best describes a primary benefit of using Autodesk Construction Cloud (ACC) for project document management?</p>
+          <label>
+            <input type="radio" name="question1" value="a" required> a) It provides a secure, single source of truth for all project documents.
+          </label>
+          <label>
+            <input type="radio" name="question1" value="b"> b) It requires manual naming and filing of documents.
+          </label>
+          <label>
+            <input type="radio" name="question1" value="c"> c) It relies exclusively on email systems for document sharing.
+          </label>
+          <label>
+            <input type="radio" name="question1" value="d"> d) It minimizes collaboration by isolating data.
+          </label>
+        </div>
+  
+        <div class="question">
+          <h3>2</h3><p>How does ACC help organizations align with ISO19650 standards?</p>
+          <label>
+            <input type="radio" name="question2" value="a" required> a) By offering a Common Data Environment (CDE) that organizes, stores, and manages documents.
+          </label>
+          <label>
+            <input type="radio" name="question2" value="b"> b) By discouraging standardized document naming to increase flexibility.
+          </label>
+          <label>
+            <input type="radio" name="question2" value="c"> c) By focusing solely on offline document storage.
+          </label>
+          <label>
+            <input type="radio" name="question2" value="d"> d) By replacing digital records with paper archives.
+          </label>
+        </div>
+
+        <div class="question">
+          <h3>3</h3><p>Poor document control can lead to several risks in a construction project. Which risk is specifically addressed by using ACC?</p>
+            <label>
+                <input type="radio" name="question3" value="a" required> a) Delays in project approvals due to lost or outdated documents.
+              </label>
+              <label>
+                <input type="radio" name="question3" value="b"> b) Increased cost savings from manual processes.
+              </label>
+              <label>
+                <input type="radio" name="question3" value="c"> c) Excessive data redundancy caused by multiple CDEs.
+              </label>
+              <label>
+                <input type="radio" name="question3" value="d"> d) Enhanced security exposure from too many digital backups.
+              </label>
+          </div>
+    
+          <div class="question">
+            <h3>4</h3><p>Which ACC feature supports effective collaboration and efficient information sharing, in line with ISO19650’s emphasis on a reliable CDE?</p>
+            <label>
+                <input type="radio" name="question4" value="a" required> a) Automated approvals and workflow management.
+              </label>
+              <label>
+                <input type="radio" name="question4" value="b"> b) Disconnected email threads for file exchanges.
+              </label>
+              <label>
+                <input type="radio" name="question4" value="c"> c) Inconsistent document naming conventions.
+              </label>
+              <label>
+                <input type="radio" name="question4" value="d"> d) Isolated data silos without cross-referencing.
+              </label>
+          </div>
+
+          <div class="question">
+            <h3>5</h3><p>What is a recommended best practice when using ACC to manage documents on construction projects?</p>
+            <label>
+                <input type="radio" name="question5" value="a" required> a) Sync your project and mark key files as “available offline” to ensure you have the latest version when needed.
+              </label>
+              <label>
+                <input type="radio" name="question5" value="b"> b) Rely on multiple email addresses to store and retrieve documents.
+              </label>
+              <label>
+                <input type="radio" name="question5" value="c"> c) Defer document uploads until the end of the project to reduce clutter.
+              </label>
+              <label>
+                <input type="radio" name="question5" value="d"> d) Use ACC solely on desktop computers to avoid data security issues.
+              </label>
+          </div>
+        <!-- Acknowledgment checkbox -->
+        <div>
+          <label>
+            <input type="checkbox" id="acknowledge">
+            By ticking this box I confirm that I've completed the Aureos ACC Level 2 training and agree for my score and email to be captured for use in project reporting
+          </label>
+        </div>
+  
+        <!-- Email input (initially hidden) -->
+        <div id="emailDiv" class="hidden">
+          <label>
+            <select id="ACC_project_input" name="Project" data-component="Sector">
+            </select>
+          </label>
+          <label>
+
+            <input type="text" id="name" placeholder="Enter your name">
+          </label>
+          <label>
+
+            <input type="email" id="email" placeholder="Enter your email" onchange="validateEmail()">
+          </label>
+          <p id="message"></p>
+        </div>
+  
+        <!-- Submit button (disabled by default) -->
+        <div>
+          <button type="submit" id="submitBtn" value="level2" disabled>Submit</button>
+        </div>
+      </form>
+      <div id="result"></div>
+      <!-- Modal that appears when score is less than 80% -->
+      <div id="scoreModal" class="modal hidden">
+        <div class="modal-content">
+          <p id="retakeMessage"></p>
+          <button id="retakeBtn">Retake Test</button>
+        </div>
+      </div>
+    </div>
+
+    </body>
+</html>
