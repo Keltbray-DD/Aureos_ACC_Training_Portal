@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Aureos ACC Training Portal - Training Dashboard</title>
+  <link rel="icon" href="https://www.aureos.com/wp-content/uploads/2025/02/AUREOS-FAVicon_512px-x-512px-150x150.png" sizes="32x32">
+  <link rel="stylesheet" href="./assets/css/main.css">
+  <link rel="stylesheet" href="./assets/css/dashboard.css">
+  <script src="./js/dashboards.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+
+  </style>
+</head>
+<body>
+  <!-- Passcode input section -->
+  <div id="loginDiv">
+
+    <input type="password" id="passcode" placeholder="Enter passcode">
+    <br>
+
+  </div>
+
+  <!-- Protected content -->
+  <div id="protectedContent">
+    <!-- Add more content as needed -->
+    <h1 class="mainTitle">Training Dashboard</h1>
+    
+    <!-- Tab Bar -->
+    <div class="tab-bar">
+        <button class="tab-link active" onclick="openTab(event, 'Overview')">Overview</button>
+        <button class="tab-link" onclick="openTab(event, 'Level1')">Level 1</button>
+        <button class="tab-link" onclick="openTab(event, 'Level2')">Level 2</button>
+        <button class="tab-link" onclick="openTab(event, 'Level3')">Level 3</button>
+    </div>
+
+    <!-- Tab Content -->
+    <div id="Overview" class="tab-content active">
+        <h1>Overview</h1>
+        <p>This is the overview of the ACC Training.</p>
+        <div class="summaryContainer">
+            <div class="summaryBox" id="summaryMonthBox">
+                <h2>Current Month Training Summary</h2>
+                <div class="counts-container">
+                  <div class="count-item" id="l1Count">L1: 0 users</div>
+                  <div class="count-item" id="l2Count">L2: 0 users</div>
+                  <div class="count-item" id="l3Count">L3: 0 users</div>
+                </div>
+            
+              </div>
+            <div class="summaryBox" id="summaryBox">
+                <h2>Current Month Training Summary</h2>
+                <div class="counts-container">
+                  <div class="count-item" id="l1FullCount">L1: 0 users</div>
+                  <div class="count-item" id="l2FullCount">L2: 0 users</div>
+                  <div class="count-item" id="l3FullCount">L3: 0 users</div>
+                </div>
+            
+              </div>
+        </div>
+
+        <h2>Project Users Analysis</h2>
+        <div class="overViewContainer">
+            <div class="piechart-container">
+                <canvas id="myPieChart" width="500" height="500"></canvas>
+              </div>
+              <div id="tableContainer">
+                <!-- Table of users for the clicked project will appear here -->
+              </div>
+        </div>
+
+    </div>
+
+    <div id="Level1" class="tab-content">
+        <h2>Level 1</h2>
+        <p>This is the Level 1 content.</p>
+
+
+            <div class="containerDash">
+            <!-- Container for Yes/No Questions Chart -->
+            <div class="chart-container">
+                <h2>Yes/No Responses per Question</h2>
+                <canvas id="yesNoChart"></canvas>
+              </div>
+            
+              <!-- Container for Rating Distribution Chart -->
+              <div class="chart-container">
+                <h2>Confidence Rating Distribution</h2>
+                <canvas id="ratingChart"></canvas>
+              </div>
+            </div>
+
+    </div>
+
+    <div id="Level2" class="tab-content">
+        <h2>Level 2</h2>
+        <p>This is the Level 2 content.</p>
+    </div>
+
+    <div id="Level3" class="tab-content" disabled>
+        <h2>Level 3</h2>
+        <p>This is the Level 3 content.</p>
+    </div>
+
+
+  </div>
+  <a href="https://www.aureos.com/" target="_blank" rel="noopener noreferrer">
+    <img src="https://www.aureos.com/wp-content/themes/keltbray/assets/img/logo/AUREOS_logo_wh.svg"
+        class="logo logo--white" alt="Aureos Logo">
+</a>
+  <script>
+    const correctPasscode = "250325";  // Change this to your desired passcode.
+    const passcodeInput = document.getElementById("passcode");
+    const errorMsg = document.getElementById("error");
+
+    // Listen for changes in the passcode input
+    passcodeInput.addEventListener("input", function() {
+      if (passcodeInput.value === correctPasscode) {
+        // Hide the login form and show the protected content
+        document.getElementById("loginDiv").style.display = "none";
+        document.getElementById("protectedContent").style.display = "block";
+      } else {
+        // Optionally clear the error message or add custom logic
+
+      }
+    });
+  </script>
+</body>
+</html>
