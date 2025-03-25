@@ -151,3 +151,39 @@
         width: 45%;
         margin: 10px 2.5%;
       }
+
+      .rating-container {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        margin-top: 10px;
+      }
+  
+      .rating-label {
+        font-size: 16px;
+      }
+  
+      .scaleRadio {
+        display: none;
+      }
+  
+      .rating {
+        cursor: pointer;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        text-align: center;
+        width: 40px;
+        transition: background-color 0.2s;
+      }
+  
+      input[type="radio"]:checked + .rating {
+        background-color: #4caf50;
+        color: white;
+        border-color: #4caf50;
+      }
+  
+      .rating:hover {
+        background-color: #e0e0e0;
+      }
+  

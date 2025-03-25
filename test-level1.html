@@ -8,97 +8,85 @@
   <link rel="stylesheet" href="./assets/css/test.css">
   <script src="./js/variables.js"></script>
   <script src="./js/test.js"></script>
-  <title>Aureos ACC Training Portal - Level 1 Knowledge Check</title>
+  <title>Aureos ACC Training Portal - Level 1 Acknowledgment</title>
 </head>
 <body>
     <div class="container fade-in">
-      <h1>ACC Level 1 Knowledge Check</h1>
+      <h1>ACC Level 1 Acknowledgment</h1>
       <form id="quizForm" value="level1">
         <!-- Multiple choice questions -->
         <div class="question">
-          <h3>1</h3><p>Which of the following best describes a primary benefit of using Autodesk Construction Cloud (ACC) for project document management?</p>
+          <h3>1</h3><p>Know how to upload a document in ACC?</p>
           <label>
-            <input type="radio" name="question1" value="a" required> a) It provides a secure, single source of truth for all project documents.
+            <input type="radio" name="question1" value="Y" required> Yes
           </label>
           <label>
-            <input type="radio" name="question1" value="b"> b) It requires manual naming and filing of documents.
-          </label>
-          <label>
-            <input type="radio" name="question1" value="c"> c) It relies exclusively on email systems for document sharing.
-          </label>
-          <label>
-            <input type="radio" name="question1" value="d"> d) It minimizes collaboration by isolating data.
+            <input type="radio" name="question1" value="N"> No
           </label>
         </div>
   
         <div class="question">
-          <h3>2</h3><p>How does ACC help organizations align with ISO19650 standards?</p>
+          <h3>2</h3><p>Know how to include the project email address in correspondence?</p>
           <label>
-            <input type="radio" name="question2" value="a" required> a) By offering a Common Data Environment (CDE) that organizes, stores, and manages documents.
+            <input type="radio" name="question2" value="Y" required> Yes
           </label>
           <label>
-            <input type="radio" name="question2" value="b"> b) By discouraging standardized document naming to increase flexibility.
-          </label>
-          <label>
-            <input type="radio" name="question2" value="c"> c) By focusing solely on offline document storage.
-          </label>
-          <label>
-            <input type="radio" name="question2" value="d"> d) By replacing digital records with paper archives.
+            <input type="radio" name="question2" value="N"> No
           </label>
         </div>
 
         <div class="question">
-          <h3>3</h3><p>Poor document control can lead to several risks in a construction project. Which risk is specifically addressed by using ACC?</p>
-            <label>
-                <input type="radio" name="question3" value="a" required> a) Delays in project approvals due to lost or outdated documents.
-              </label>
-              <label>
-                <input type="radio" name="question3" value="b"> b) Increased cost savings from manual processes.
-              </label>
-              <label>
-                <input type="radio" name="question3" value="c"> c) Excessive data redundancy caused by multiple CDEs.
-              </label>
-              <label>
-                <input type="radio" name="question3" value="d"> d) Enhanced security exposure from too many digital backups.
-              </label>
+          <h3>3</h3><p>Understand where to access ACC training materials and guides?</p>
+          <label>
+            <input type="radio" name="question3" value="Y" required> Yes
+          </label>
+          <label>
+            <input type="radio" name="question3" value="N"> No
+          </label>
           </div>
     
           <div class="question">
-            <h3>4</h3><p>Which ACC feature supports effective collaboration and efficient information sharing, in line with ISO19650’s emphasis on a reliable CDE?</p>
+            <h3>4</h3><p>Know who to contact for support when needed?</p>
             <label>
-                <input type="radio" name="question4" value="a" required> a) Automated approvals and workflow management.
-              </label>
-              <label>
-                <input type="radio" name="question4" value="b"> b) Disconnected email threads for file exchanges.
-              </label>
-              <label>
-                <input type="radio" name="question4" value="c"> c) Inconsistent document naming conventions.
-              </label>
-              <label>
-                <input type="radio" name="question4" value="d"> d) Isolated data silos without cross-referencing.
-              </label>
+              <input type="radio" name="question4" value="Y" required> Yes
+            </label>
+            <label>
+              <input type="radio" name="question4" value="N"> No
+            </label>
           </div>
 
           <div class="question">
-            <h3>5</h3><p>What is a recommended best practice when using ACC to manage documents on construction projects?</p>
-            <label>
-                <input type="radio" name="question5" value="a" required> a) Sync your project and mark key files as “available offline” to ensure you have the latest version when needed.
+            <h3>5</h3><p>On a scale of 1-5, how confident do you feel using ACC for the tasks we went through today?</p>
+            <p>1 = Not Confident At All, 5 = Very Confident</p>
+
+            <div class="rating-container">
+              <label>
+                <input type="radio" class="scaleRadio" name="question5" value="1" >
+                <div class="rating">1</div>
               </label>
               <label>
-                <input type="radio" name="question5" value="b"> b) Rely on multiple email addresses to store and retrieve documents.
+                <input type="radio" class="scaleRadio" name="question5" value="2" >
+                <div class="rating">2</div>
               </label>
               <label>
-                <input type="radio" name="question5" value="c"> c) Defer document uploads until the end of the project to reduce clutter.
+                <input type="radio" class="scaleRadio" name="question5" value="3" >
+                <div class="rating">3</div>
               </label>
               <label>
-                <input type="radio" name="question5" value="d"> d) Use ACC solely on desktop computers to avoid data security issues.
+                <input type="radio" class="scaleRadio" name="question5" value="4" >
+                <div class="rating">4</div>
               </label>
+              <label>
+                <input type="radio" class="scaleRadio" name="question5" value="5" >
+                <div class="rating">5</div>
+              </label>
+            </div>
           </div>
         <!-- Acknowledgment checkbox -->
         <div>
           <label>
             <input type="checkbox" id="acknowledge">
-            By ticking this box I confirm that I've completed the Aureos ACC Level 1 training and agree for my score and email to be captured for use in project reporting
+            By submitting this form, I hereby confirm my attendance and full participation in the training provided. I acknowledge that a record will be kept to evidence my participation and that I may be required to undertake this training again, or advanced training,  to ensure my ongoing responsibilities to work on projects utilising ACC. Do you acknowledge?
           </label>
         </div>
   

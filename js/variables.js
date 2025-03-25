@@ -1,5 +1,5 @@
 const appName = "ACC Training Portal";
-const appVersion = "v1.1.1";
+const appVersion = "v1.1.2";
 const level1Version = 1
 const level2Version = 1
 
@@ -8,6 +8,9 @@ let score
 let totalQuestions
 let selectedProjectNameOption
 let ProjectList =[]
+
+let userName;
+let userEmail;
 
 const answers_level1 = {
     question1: "a",

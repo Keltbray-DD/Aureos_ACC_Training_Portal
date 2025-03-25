@@ -42,24 +42,31 @@ document.addEventListener("DOMContentLoaded", async function () {
     e.preventDefault();
     const test = e.target.value;
     console.log(test);
-    const result = await scoreChecker(test);
+    // const result = await scoreChecker(test);
+    const result = true
     if(result){
       // Gather the form data.
-      var userName = document.getElementById("name").value;
-      var userEmail = document.getElementById("email").value;
+      userName = document.getElementById("name").value;
+      userEmail = document.getElementById("email").value;
+      sessionStorage.setItem('userName',userName);
+      sessionStorage.setItem('userEmail',userEmail);
       // Log the values or use them as needed.
       console.log("Name:", userName);
       console.log("Email:", userEmail);
       var data = {
-        email: userName,
-        name: userEmail,
-        testLevel: testLevel,
-        score: score,
-        testTotal:totalQuestions,
+        name: userName,
+        email: userEmail,
+        testLevel: "L1",
+        l1Q1: document.querySelector(`input[name="question1"]:checked`).value,
+        l1Q2: document.querySelector(`input[name="question2"]:checked`).value,
+        l1Q3: document.querySelector(`input[name="question3"]:checked`).value,
+        l1Q4: document.querySelector(`input[name="question4"]:checked`).value,
+        l1Q5: document.querySelector(`input[name="question5"]:checked`).value,
         project:selectedProjectNameOption
       };
+      console.log(data)
     // Send the data via a POST request (adjust the endpoint URL as needed).
-    fetch(
+    await fetch(
       "https://prod-32.uksouth.logic.azure.com:443/workflows/8188a034ed174f588e630c35f3bf3c2a/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=P42z_UOd8aiFgboI6ycXrN6kbBY7YDI1Dwx3Gfu1Cv0",
       {
         method: "POST",
@@ -75,7 +82,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         } else {
           // Display success message.
           console.log('Submission Successful')
-          window.location.href = 'confirmation.html';
+          window.location.href = 'feedback.html';
         }
         return response.json();
       })
@@ -83,8 +90,6 @@ document.addEventListener("DOMContentLoaded", async function () {
         
       })
       .catch(function (error) {
-        document.getElementById("message").textContent =
-          "Submission failed. Please try again.";
         console.error("Error:", error);
       });
 
