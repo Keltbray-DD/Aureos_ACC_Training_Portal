@@ -28,17 +28,12 @@ document.addEventListener("DOMContentLoaded", async function () {
       }
     });
 
-  // Enable submit button only if a valid email is entered.
-  document.getElementById("email").addEventListener("input", function () {
-    var email = this.value;
-    var submitBtn = document.getElementById("submitBtn");
-    // Basic email validation pattern.
-    var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    submitBtn.disabled = !emailPattern.test(email);
-  });
 
+  await getProjects()
+
+  if(window.location.href.includes("level1")){
   // Handle form submission.
-  document.getElementById("submitBtn").addEventListener("click", async function (e) {
+  document.getElementById("submitBtnL1").addEventListener("click", async function (e) {
     e.preventDefault();
     const test = e.target.value;
     console.log(test);
@@ -100,7 +95,90 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   });
 
-  await getProjects()
+    // Enable submit button only if a valid email is entered.
+    document.getElementById("email").addEventListener("input", function () {
+      var email = this.value;
+      var submitBtn = document.getElementById("submitBtnL1");
+      // Basic email validation pattern.
+      var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      submitBtn.disabled = !emailPattern.test(email);
+    });
+  }
+
+  if(window.location.href.includes("level2")){
+    document.getElementById("submitBtnL2").addEventListener("click", async function (e) {
+      e.preventDefault();
+      const test = e.target.value;
+      console.log(test);
+      // const result = await scoreChecker(test);
+      const result = true
+      if(result){
+        // Gather the form data.
+        userName = document.getElementById("name").value;
+        userEmail = document.getElementById("email").value;
+        sessionStorage.setItem('userName',userName);
+        sessionStorage.setItem('userEmail',userEmail);
+        // Log the values or use them as needed.
+        console.log("Name:", userName);
+        console.log("Email:", userEmail);
+        var data = {
+          name: userName,
+          email: userEmail,
+          testLevel: "L2",
+          l2Q1: document.querySelector(`input[name="question1L2"]:checked`).value,
+          l2Q2: document.querySelector(`input[name="question2L2"]:checked`).value,
+          l2Q3: document.querySelector(`input[name="question3L2"]:checked`).value,
+          l2Q4: document.querySelector(`input[name="question4L2"]:checked`).value,
+          l2Q5: document.querySelector(`input[name="question5L2"]:checked`).value,
+          l2Q6: document.querySelector(`input[name="question6L2"]:checked`).value,
+          l2Q7: document.querySelector(`input[name="question7L2"]:checked`).value,
+          l2Q8: document.querySelector(`input[name="question8L2"]:checked`).value,
+          l2Q9: document.querySelector(`input[name="question9L2"]:checked`).value,
+          l2Q10: document.querySelector(`input[name="question10L2"]:checked`).value,
+          project:selectedProjectNameOption
+        };
+        console.log(data)
+      // Send the data via a POST request (adjust the endpoint URL as needed).
+      await fetch(
+        "https://prod-32.uksouth.logic.azure.com:443/workflows/8188a034ed174f588e630c35f3bf3c2a/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=P42z_UOd8aiFgboI6ycXrN6kbBY7YDI1Dwx3Gfu1Cv0",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }
+      )
+        .then(function (response) {
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          } else {
+            // Display success message.
+            console.log('Submission Successful')
+            window.location.href = 'feedback.html';
+          }
+          return response.json();
+        })
+        .then(function (responseData) {
+          
+        })
+        .catch(function (error) {
+          console.error("Error:", error);
+        });
+  
+      }
+      return;
+    });
+  }
+
+  // Enable submit button only if a valid email is entered.
+  document.getElementById("email").addEventListener("input", function () {
+    var email = this.value;
+    var submitBtn = document.getElementById("submitBtnL2");
+    // Basic email validation pattern.
+    var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    submitBtn.disabled = !emailPattern.test(email);
+  });
 
 });
 
@@ -146,9 +224,9 @@ async function scoreChecker(test) {
   } else {return true}
 }
 
-function validateEmail() {
+function validateEmail(level) {
   const email = document.getElementById("email").value;
-  const submitButton = document.getElementById("submitBtn");
+  const submitButton = document.getElementById(`submitBtn${level}`);
   const message = document.getElementById("message");
 
   // Define blocked personal email providers
