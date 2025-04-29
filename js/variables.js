@@ -1,5 +1,5 @@
 const appName = "ACC Training Portal";
-const appVersion = "v1.1.6";
+const appVersion = "v1.1.7";
 const level1Version = 1
 const level2Version = 1
 
