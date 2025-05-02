@@ -1,27 +1,34 @@
 document.addEventListener('DOMContentLoaded', async function() {
-    let trainingList = await getEventDetails()
+    trainingList = await getEventDetails()
     console.log(trainingList)
     let levelDropdown = document.getElementById('levelSelect')
-
+    roleDropdown = document.getElementById('dropdownMenu')
+    searchInput = document.getElementById('searchInput')
+    roleData = await getRoleData()
+    await roleSeachBarLoad(roleData)
     levelDropdown.addEventListener("change", async (e) => {
         const level = e.target.value
         console.log(level)
-        const dateDropdown = document.getElementById('levelDates')
-        dateDropdown.innerHTML = ''
-        switch (level) {
-            case '1':
-                await populateDatesDropdown(trainingList.Level1,dateDropdown)
-                break;
-
-            case '2':
-                await populateDatesDropdown(trainingList.Level2,dateDropdown)
-                break;
-            default:
-                console.log("nope")
-                break;
-        }
+        populateDatesDropdown(level)
       });
 })
+
+async function calculateeDatesDropdown(level) {
+    const dateDropdown = document.getElementById('levelDates')
+    dateDropdown.innerHTML = ''
+    switch (level) {
+        case '1':
+            await populateDatesDropdown(trainingList.Level1,dateDropdown)
+            break;
+
+        case '2':
+            await populateDatesDropdown(trainingList.Level2,dateDropdown)
+            break;
+        default:
+            console.log("nope")
+            break;
+    }
+}
 
 async function populateDatesDropdown(array,htmlElement) {
     array.forEach(async element => {
@@ -181,4 +188,76 @@ async function getEventDetails(){
             submitButton.disabled = true; // Disable button
             submitButton.classList.add("disabled"); // Add greyed-out style
         }
+      }
+
+      async function getRoleData() {
+      
+        const headers = {
+          "Content-Type": "application/json",
+        };
+      
+        const requestOptions = {
+          method: "GET",
+          headers: headers,
+          //body: JSON.stringify(bodyData),
+        };
+      
+        const apiUrl =
+          "https://prod-60.uksouth.logic.azure.com:443/workflows/b9e23700047948609bfb4cf36a95369c/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=Up3Q9sV3xoYvJdF34MBVWi9cxHN_Osozt0uo8cKZerw";
+        //console.log(apiUrl)
+        //console.log(requestOptions)
+        responseData = await fetch(apiUrl, requestOptions)
+          .then((response) => response.json())
+          .then((data) => {
+            const JSONdata = data;
+            console.log(JSONdata);
+            //console.log(JSONdata.uploadKey)
+            //console.log(JSONdata.urls)
+            return JSONdata;
+          })
+          .catch((error) => console.error("Error fetching data:", error));
+        return responseData;
+      }
+
+      async function roleSeachBarLoad(data) {
+
+        selectedRole = "";
+      
+        searchInput.addEventListener("input", () => {
+          const value = searchInput.value.toLowerCase();
+          roleDropdown.innerHTML = "";
+      
+          if (!value) {
+            roleDropdown.style.display = "none";
+            return;
+          }
+      
+          const filtered = data.filter((p) =>
+            p["role"].toLowerCase().includes(value)
+          );
+          filtered.forEach((project) => {
+            const div = document.createElement("div");
+            div.textContent = project["role"];
+            div.addEventListener("click", () => {
+              selectedRole = project;
+              console.log(selectedRole)
+              searchInput.value = selectedRole["role"]
+              document.getElementById('roleTrainingLevel').innerHTML = ''
+                document.getElementById('roleTrainingLevel').innerHTML = `<p class="note">Minimum Level of training required ${selectedRole["trainingLevel"]}</p>`
+                // const level = selectedRole["trainingLevel"].split(' ')[1]
+                // document.getElementById('levelSelect').value = level
+                // calculateeDatesDropdown(level)
+            });
+            roleDropdown.appendChild(div);
+          });
+      
+          roleDropdown.style.display = filtered.length > 0 ? "block" : "none";
+          //noResults.style.display = filtered.length > 0 ? "none" : "block";
+        });
+      
+        document.addEventListener("click", (e) => {
+          if (!e.target.closest(".search-box")) {
+            roleDropdown.style.display = "none";
+          }
+        });
       }
