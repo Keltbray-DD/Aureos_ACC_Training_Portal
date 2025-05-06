@@ -9,8 +9,9 @@ document.addEventListener('DOMContentLoaded', async function() {
     levelDropdown.addEventListener("change", async (e) => {
         const level = e.target.value
         console.log(level)
-        populateDatesDropdown(level)
-      });
+        console.log(trainingList)
+        calculateeDatesDropdown(level)
+})
 })
 
 async function calculateeDatesDropdown(level) {
