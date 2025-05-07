@@ -211,6 +211,7 @@ body {
     color: #fff;
     font-family: Arial, sans-serif;
     font-size: 12px;
+    z-index: 1001;
 }
 
   /* Responsive for smaller screens */
