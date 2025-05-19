@@ -11,6 +11,16 @@ document.addEventListener("DOMContentLoaded", async function () {
     console.log(selectedProjectNameOption, selectedProjectIDOption)
 
   });
+  let buDropdown = document.getElementById('bu_input');
+
+  buDropdown.addEventListener('change', function () {
+    let selectedBuOption = buDropdown.value;
+    sessionStorage.setItem('selectedBuOption', selectedBuOption);
+
+    console.log(selectedBuOption)
+
+  });
+
   // Modal button: Retake Test reloads the page to restart the quiz.
   document.getElementById("retakeBtn").addEventListener("click", function () {
     window.location.reload();
@@ -57,7 +67,8 @@ document.addEventListener("DOMContentLoaded", async function () {
         l1Q3: document.querySelector(`input[name="question3"]:checked`).value,
         l1Q4: document.querySelector(`input[name="question4"]:checked`).value,
         l1Q5: document.querySelector(`input[name="question5"]:checked`).value,
-        project:selectedProjectNameOption
+        project:selectedProjectNameOption,
+        bu:selectedBuOption
       };
       console.log(data)
     // Send the data via a POST request (adjust the endpoint URL as needed).
@@ -135,7 +146,8 @@ document.addEventListener("DOMContentLoaded", async function () {
           l2Q8: document.querySelector(`input[name="question8L2"]:checked`).value,
           l2Q9: document.querySelector(`input[name="question9L2"]:checked`).value,
           l2Q10: document.querySelector(`input[name="question10L2"]:checked`).value,
-          project:selectedProjectNameOption
+          project:selectedProjectNameOption,
+          bu:selectedBuOption
         };
         console.log(data)
       // Send the data via a POST request (adjust the endpoint URL as needed).

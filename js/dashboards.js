@@ -2,7 +2,8 @@ document.addEventListener("DOMContentLoaded", async function () {
     let surveyData
     surveyData = await getTrainingRecordData()
     console.log(surveyData)
-    await generateL1Charts(surveyData.L1)
+    await generateCharts(surveyData.L1,'Level1')
+    await generateCharts(surveyData.L2,'Level2')
     await generateOverviewTab(surveyData.All)
 
 });
@@ -123,7 +124,7 @@ async function generateOverviewTab(data) {
         const projectData = Object.values(projectCounts);
     
         // Create the pie chart using Chart.js
-        const ctx = document.getElementById('myPieChart').getContext('2d');
+        const ctx = document.getElementById('projectPieChart').getContext('2d');
         const myPieChart = new Chart(ctx, {
           type: 'pie',
           data: {
@@ -138,11 +139,8 @@ async function generateOverviewTab(data) {
                 'rgba(153, 102, 255, 0.6)'
               ],
               borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)'
+                'rgb(255, 255, 255)',
+
               ],
               borderWidth: 1
             }]
@@ -158,16 +156,76 @@ async function generateOverviewTab(data) {
               if (activeElements.length > 0) {
                 const index = activeElements[0].index;
                 const projectClicked = projectLabels[index];
-                displayUsersForProject(projectClicked);
+                displayUsersForProject(projectClicked,'project');
+              }
+            }
+          }
+        });
+
+        // Group users by project count
+        const buCounts = {};
+        data.forEach(user => {
+          const bu = user.bu;
+          if (!buCounts[bu]) {
+            buCounts[bu] = 0;
+          }
+          buCounts[bu]++;
+        });
+    
+        // Prepare labels and data for the pie chart
+        const buLabels = Object.keys(buCounts);
+        const buData = Object.values(buCounts);
+    
+        // Create the pie chart using Chart.js
+        const ctxBU = document.getElementById('buPieChart').getContext('2d');
+        const buPieChart = new Chart(ctxBU, {
+          type: 'pie',
+          data: {
+            labels: buLabels,
+            datasets: [{
+              data: buData,
+              backgroundColor: [
+                'rgba(255, 99, 132, 0.6)',
+                'rgba(54, 162, 235, 0.6)',
+                'rgba(255, 206, 86, 0.6)',
+                'rgba(75, 192, 192, 0.6)',
+                'rgba(153, 102, 255, 0.6)'
+              ],
+              borderColor: [
+                'rgb(255, 255, 255)',
+
+              ],
+              borderWidth: 1
+            }]
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: {
+                position: 'right'
+              }
+            },
+            onClick: (evt, activeElements) => {
+              if (activeElements.length > 0) {
+                const index = activeElements[0].index;
+                const buClicked = buLabels[index];
+                displayUsersForProject(buClicked,'bu');
               }
             }
           }
         });
     
         // Function to display a table of users for a specific project
-        function displayUsersForProject(project) {
-          const filteredUsers = data.filter(user => user.Project === project);
-          let tableHTML = `<h2>Users for Project: ${project}</h2>`;
+        function displayUsersForProject(project,type) {
+          let filteredUsers
+          if(type == 'project'){
+            filteredUsers = data.filter(user => user.Project === project);
+          }
+          else{
+            filteredUsers = data.filter(user => user.bu === project);
+          }
+          
+          let tableHTML = `<h2>Users for ${type}: ${project}</h2>`;
           tableHTML += `<table>
                           <thead>
                             <tr>
@@ -189,14 +247,20 @@ async function generateOverviewTab(data) {
         }
 }
 
-async function generateL1Charts(data) {
+async function generateCharts(data,level) {
     // Define the four yes/no questions (keys as they appear in the data)
-    const yesNoQuestions = [
-        "Know how to upload a document in ACC?",
-        "Know how to include the project email address in correspondence?",
-        "Understand where to access ACC training materials and guides?",
-        "Know who to contact for support when needed?"
-    ];
+    let yesNoQuestions
+  switch (level) {
+    case 'Level1':
+      yesNoQuestions = yesNoQuestionsLevel1
+      break;
+    case 'Level2':
+      yesNoQuestions = yesNoQuestionsLevel2
+      break;
+  
+    default:
+      break;
+  }
 
     // Prepare an object to count responses for each yes/no question
     const yesNoCounts = {};
@@ -222,7 +286,7 @@ async function generateL1Charts(data) {
     const noData = questions.map(q => yesNoCounts[q].N);
 
     // Create the Yes/No Chart
-    const ctxYesNo = document.getElementById('yesNoChart').getContext('2d');
+    const ctxYesNo = document.getElementById(`yesNoChart${level}`).getContext('2d');
     const yesNoChart = new Chart(ctxYesNo, {
         type: 'bar',
         data: {
@@ -268,7 +332,7 @@ async function generateL1Charts(data) {
     const ratingData = ratingLabels.map(label => ratingCounts[label]);
 
     // Create the Rating Distribution Chart
-    const ctxRating = document.getElementById('ratingChart').getContext('2d');
+    const ctxRating = document.getElementById(`ratingChart${level}`).getContext('2d');
     const ratingChart = new Chart(ctxRating, {
         type: 'bar',
         data: {

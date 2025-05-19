@@ -58,7 +58,7 @@
             
               </div>
             <div class="summaryBox" id="summaryBox">
-                <h2>Current Month Training Summary</h2>
+                <h2>Overall Training Summary</h2>
                 <div class="counts-container">
                   <div class="count-item" id="l1FullCount">L1: 0 users</div>
                   <div class="count-item" id="l2FullCount">L2: 0 users</div>
@@ -68,10 +68,14 @@
               </div>
         </div>
 
-        <h2>Project Users Analysis</h2>
+        <h2>Overall Analysis</h2>
+        <p>Click pie section to see users</p>
         <div class="overViewContainer">
             <div class="piechart-container">
-                <canvas id="myPieChart" width="500" height="500"></canvas>
+              <h3>Business Units</h3>
+              <canvas id="buPieChart" height="200" class="pieChart"></canvas>
+              <h3>Projects</h3>
+              <canvas id="projectPieChart" height="200" class="pieChart"></canvas>
               </div>
               <div id="tableContainer">
                 <!-- Table of users for the clicked project will appear here -->
@@ -81,33 +85,43 @@
     </div>
 
     <div id="Level1" class="tab-content">
-        <h2>Level 1</h2>
+        <h1>Level 1</h1>
         <p>This is the Level 1 content.</p>
-
-
-            <div class="containerDash">
-            <!-- Container for Yes/No Questions Chart -->
-            <div class="chart-container">
-                <h2>Yes/No Responses per Question</h2>
-                <canvas id="yesNoChart"></canvas>
-              </div>
-            
-              <!-- Container for Rating Distribution Chart -->
-              <div class="chart-container">
-                <h2>Confidence Rating Distribution</h2>
-                <canvas id="ratingChart"></canvas>
-              </div>
+          <div class="containerDash">
+          <!-- Container for Yes/No Questions Chart -->
+          <div class="chart-container questions">
+              <h2>Yes/No Responses per Question</h2>
+              <canvas id="yesNoChartLevel1"></canvas>
             </div>
-
+          
+            <!-- Container for Rating Distribution Chart -->
+            <div class="chart-container">
+              <h2>Confidence Rating Distribution</h2>
+              <canvas id="ratingChartLevel1"></canvas>
+            </div>
+          </div>
     </div>
 
     <div id="Level2" class="tab-content">
-        <h2>Level 2</h2>
+        <h1>Level 2</h1>
         <p>This is the Level 2 content.</p>
+          <div class="containerDash">
+          <!-- Container for Yes/No Questions Chart -->
+          <div class="chart-container questions">
+              <h2>Yes/No Responses per Question</h2>
+              <canvas id="yesNoChartLevel2"></canvas>
+            </div>
+          
+            <!-- Container for Rating Distribution Chart -->
+            <div class="chart-container">
+              <h2>Confidence Rating Distribution</h2>
+              <canvas id="ratingChartLevel2"></canvas>
+            </div>
+          </div>
     </div>
 
     <div id="Level3" class="tab-content" disabled>
-        <h2>Level 3</h2>
+        <h1>Level 3</h1>
         <p>This is the Level 3 content.</p>
     </div>
 

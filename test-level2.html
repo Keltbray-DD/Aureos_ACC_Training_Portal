@@ -161,17 +161,28 @@
         <!-- Email input (initially hidden) -->
         <div id="emailDiv" class="hidden">
           <label>
-            <select id="ACC_project_input" name="Project" data-component="Sector">
+            <select id="ACC_project_input" name="Project" data-component="Sector" required>
             </select>
           </label>
-
           <label>
-
-            <input type="text" id="name" placeholder="Enter your Full name">
+            <select id="bu_input" name="bu" data-component="Sector" required>
+              <option value="" disabled selected>Select Business Unit</option>
+              <option value="Highways">Highways</option>
+              <option value="Rail">Rail</option>
+              <option value="ATS">ATS</option>
+              <option value="Signalling & Telematics">Signalling &amp; Telematics</option>
+              <option value="Renewables">Renewables</option>
+              <option value="Distribution & Transmission">Distribution &amp; Transmission</option>
+              <option value="Infrastructure">Infrastructure</option>
+            </select>
           </label>
           <label>
 
-            <input type="email" id="email" placeholder="Enter your email" onchange="validateEmail('L2')">
+            <input type="text" id="name" placeholder="Enter your Full name" required>
+          </label>
+          <label>
+
+            <input type="email" id="email" placeholder="Enter your email" onchange="validateEmail('L2')" required>
           </label>
           <p id="message"></p>
 
