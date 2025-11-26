@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       console.log(data)
     // Send the data via a POST request (adjust the endpoint URL as needed).
     await fetch(
-      "https://prod-26.uksouth.logic.azure.com:443/workflows/d2a9a362586340fcaca5a40e28806571/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=XXJMTf-qkvFpkPUHhqtMYEBdbSce4QGgJYTMRIb0c0o",
+      "https://default917b4d06d2e9475983a3e7369ed74e.8f.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/d2a9a362586340fcaca5a40e28806571/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=0HdzNzAcv6zwtN-4BopqUciC1GZJBGaw_EUxpGoHk04",
       {
         method: "POST",
         headers: {

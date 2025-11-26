@@ -124,7 +124,7 @@ async function postEventUpdate(eventId,userEmail){
         body: JSON.stringify(bodyData)
     };
 
-    const apiUrl = "https://prod-25.uksouth.logic.azure.com:443/workflows/c90aa7165c1d4ee4b782189637e1a16e/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=pjNcqBl2cFeGxnPDdO14_pX3zOJf7QvsOuAnvPbPE_s";
+    const apiUrl = "https://default917b4d06d2e9475983a3e7369ed74e.8f.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/c90aa7165c1d4ee4b782189637e1a16e/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=x6nAho9m-IfX27tBqgp7X_tR40YICMunoKgpls1z5Xg";
     //console.log(apiUrl)
     console.log(requestOptions)
     responseData = await fetch(apiUrl,requestOptions)
@@ -152,7 +152,7 @@ async function getEventDetails(){
         headers: headers
     };
 
-    const apiUrl = "https://prod-44.uksouth.logic.azure.com:443/workflows/2153356072ec47c5846c5870941fccba/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=P8I6QzglKqButVCpAcMxxZeZwwULd8UUhj-OQt8cSFY";
+    const apiUrl = "https://default917b4d06d2e9475983a3e7369ed74e.8f.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/2153356072ec47c5846c5870941fccba/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=lIcs5at2Z0KVOKhDU5ZpEH_4ct0TC1ZGGIaTaUZwChA";
     //console.log(apiUrl)
     //console.log(requestOptions)
     responseData = await fetch(apiUrl,requestOptions)
@@ -204,7 +204,7 @@ async function getEventDetails(){
         };
       
         const apiUrl =
-          "https://prod-60.uksouth.logic.azure.com:443/workflows/b9e23700047948609bfb4cf36a95369c/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=Up3Q9sV3xoYvJdF34MBVWi9cxHN_Osozt0uo8cKZerw";
+          "https://default917b4d06d2e9475983a3e7369ed74e.8f.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/b9e23700047948609bfb4cf36a95369c/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=IkrQgErXeGqyQcL8mVU4ekbHdtGIHHV1e46nNt1xSnE";
         //console.log(apiUrl)
         //console.log(requestOptions)
         responseData = await fetch(apiUrl, requestOptions)

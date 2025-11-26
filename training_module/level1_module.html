@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://www.aureos.com/wp-content/uploads/2025/02/AUREOS-FAVicon_512px-x-512px-150x150.png" sizes="32x32">
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/modules.css">
+    <script src="../js/variables.js"></script>
+    <script src="../js/modules.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <!-- Import Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Aureos ACC Training Portal</title>
+</head>
+<body>
+  <div class="top-bar">
+    <img src="https://www.aureos.com/wp-content/themes/keltbray/assets/img/logo/AUREOS_logo_wh.svg" 
+    class="logo logo--white" 
+    alt="Aureos Logo">
+    <div class="title"><h2>Aureos ACC Training Portal</h2></div>
+    <div class="profile-container" id="profileMenu">
+    </div>
+  </div>
+  <section class="moduleSection">
+    <div class="panel side" id="sidePanel">
+        <h2>Sections</h2>
+
+
+<ul class="module-sections">
+     <li onclick="showPanel('section0')" id="section0_li" class="sectionOption active">
+         <h3>Introduction</h3>
+         </li>
+     <li onclick="showPanel('section1')" id="section1_li" class="sectionOption">
+         <h3>Logging In</h3>
+         </li>
+     <li onclick="showPanel('section2')" id="section2_li" class="sectionOption">
+         <h3>Navigating ACC</h3>
+         </li>
+     <li onclick="showPanel('section3')" id="section3_li" class="sectionOption">
+         <h3>Searching and Filtering within ACC</h3>
+         </li>
+     <li onclick="showPanel('section4')" id="section4_li" class="sectionOption">
+         <h3>Sharing Files</h3>
+         </li>
+     <li onclick="showPanel('section5')" id="section5_li" class="sectionOption">
+         <h3>Understanding Metadata &amp; Attributes</h3>
+         </li>
+     <li onclick="showPanel('section6')" id="section6_li" class="sectionOption">
+         <h3>Uploading Documents</h3>
+         </li>
+     <li onclick="showPanel('section7')" id="section7_li" class="sectionOption">
+         <h3>Correspondence</h3>
+         </li>
+     <li onclick="showPanel('section8')" id="section8_li" class="sectionOption">
+         <h3>Summary &amp; Next Steps</h3>
+         </li>
+    </ul>
+
+    </div>
+    <div class="panel main" id="mainPanel">
+        <div id="section0" class="panel-content active">
+            <h2>Welcome to the Level 1 Essentials training</h2>
+            <p>
+                This training has been designed as a practical starting point for team members who are new to ACC or looking to build confidence
+                with the platform's core features.
+                Whether you’re on-site or in the office, this guide gives you the tools to begin working effectively within your project environment. It’s
+                a great foundation before progressing to Level 2, which builds on these basics with more advanced tools. You don’t need to
+                complete this guide in a specific order — use it when you need help with a particular task, or to explore more features in your own
+                time.
+            </p>
+            <h3>What You’ll Find in This Guide</h3>
+            <p>You’ll find simple, step-by-step instructions to help you:</p>
+            <ul class="general-list">
+                <li>Log in and access your project with ease</li>
+                <li>Navigate ACC modules confidently</li>
+                <li>Find, Share and View Files</li>
+                <li>Upload files using the correct process</li>
+                <li>Manage Project Emails</li>
+            </ul>
+        </div>
+        <div id="section1" class="panel-content">
+            <h2>Logging In to ACC</h2>
+            <p>Select an option below</p>
+            <div class="mediaOptions">
+                <button type="button" id="section1_text_btn" onclick="showPanelSection('section1_text')" class="mediaOption">Written Guide</button>
+                <button type="button" id="section1_video_btn" onclick="showPanelSection('section1_video')" class="mediaOption">Walk through video</button>
+            </div>
+            <div id="section1_text" class="section-content">
+                <h3>How to Login</h3>
+                <p>First go to the <a href="https://acc.autodesk.eu/home">ACC hompage</a>, then you will be redirected to the login page if signed out.</p>
+                <p>Once the login page has loaded enter your email that you have signed up to ACC with, this is normally your company email, then click Next.</p>
+                <img src="../assets/media/autodesk_login1.PNG" alt="">
+                <p>For Aureos users you will be redirected to Micorsoft 365 as we have Single Sign On (SSO) enabled, please enter your Microsoft credentials to continue loggining in.</p>
+                <p>For non-Auroes users, this will depend on what configurations your company has setup, in most instances your will just login using the password you created when you first registered your account. If you can't remember please use the 'Forgot Password' option to reset it.</p>
+                <p>Once youve successfully logged in your will be redirected to the ACC Homepage, where you can see your Dashboard for items assgined to you or go to the projects tab to see the projects you have access to.</p>
+            </div>
+            <div id="section1_video" class="section-content">
+             <h3>Watch the Video</h3>
+             <iframe 
+                src="https://www.youtube.com/embed/um0G1ZfnbM0" 
+                title="YouTube video player" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+             </iframe>
+            </div>
+        </div>
+        <div id="section2" class="panel-content">
+            <h2>Navigating ACC</h2>
+            <p>Select an option below</p>
+            <div class="mediaOptions">
+                <button type="button" id="section2_text_btn" onclick="showPanelSection('section2_text')" class="mediaOption">Written Guide</button>
+                <button type="button" id="section2_video_btn" onclick="showPanelSection('section2_video')" class="mediaOption">Walk through video</button>
+            </div>
+            <div id="section2_text" class="section-content">
+                <h3>How to Login</h3>
+                <p>First go to the <a href="https://acc.autodesk.eu/home">ACC hompage</a>, then you will be redirected to the login page if signed out.</p>
+                <p>Once the login page has loaded enter your email that you have signed up to ACC with, this is normally your company email, then click Next.</p>
+                <img src="../assets/media/autodesk_login1.PNG" alt="">
+                <p>For Aureos users you will be redirected to Micorsoft 365 as we have Single Sign On (SSO) enabled, please enter your Microsoft credentials to continue loggining in.</p>
+                <p>For non-Auroes users, this will depend on what configurations your company has setup, in most instances your will just login using the password you created when you first registered your account. If you can't remember please use the 'Forgot Password' option to reset it.</p>
+                <p>Once youve successfully logged in your will be redirected to the ACC Homepage, where you can see your Dashboard for items assgined to you or go to the projects tab to see the projects you have access to.</p>
+            </div>
+            <div id="section2_video" class="section-content">
+             <h3>Watch the Video</h3>
+             <iframe 
+                src="https://www.youtube.com/embed/um0G1ZfnbM0" 
+                title="YouTube video player" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+             </iframe>
+            </div>
+        </div>
+        <div id="section3" class="panel-content">
+            <h2>Searching and Filtering in ACC</h2>
+            <p>Select an option below</p>
+            <div class="mediaOptions">
+                <button type="button" id="section3_text_btn" onclick="showPanelSection('section3_text')" class="mediaOption">Written Guide</button>
+                <button type="button" id="section3_video_btn" onclick="showPanelSection('section3_video')" class="mediaOption">Walk through video</button>
+            </div>
+            <div id="section3_text" class="section-content">
+                <h3>How to Login</h3>
+                <p>First go to the <a href="https://acc.autodesk.eu/home">ACC hompage</a>, then you will be redirected to the login page if signed out.</p>
+                <p>Once the login page has loaded enter your email that you have signed up to ACC with, this is normally your company email, then click Next.</p>
+                <img src="../assets/media/autodesk_login1.PNG" alt="">
+                <p>For Aureos users you will be redirected to Micorsoft 365 as we have Single Sign On (SSO) enabled, please enter your Microsoft credentials to continue loggining in.</p>
+                <p>For non-Auroes users, this will depend on what configurations your company has setup, in most instances your will just login using the password you created when you first registered your account. If you can't remember please use the 'Forgot Password' option to reset it.</p>
+                <p>Once youve successfully logged in your will be redirected to the ACC Homepage, where you can see your Dashboard for items assgined to you or go to the projects tab to see the projects you have access to.</p>
+            </div>
+            <div id="section3_video" class="section-content">
+             <h3>Watch the Video</h3>
+             <iframe 
+                src="https://www.youtube.com/embed/um0G1ZfnbM0" 
+                title="YouTube video player" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+             </iframe>
+            </div>
+        </div>
+        <div id="section4" class="panel-content">
+            <h2>Sharing Files</h2>
+            <p>Select an option below</p>
+            <div class="mediaOptions">
+                <button type="button" id="section4_text_btn" onclick="showPanelSection('section4_text')" class="mediaOption">Written Guide</button>
+                <button type="button" id="section4_video_btn" onclick="showPanelSection('section4_video')" class="mediaOption">Walk through video</button>
+            </div>
+            <div id="section4_text" class="section-content">
+                <h3>How to Login</h3>
+                <p>First go to the <a href="https://acc.autodesk.eu/home">ACC hompage</a>, then you will be redirected to the login page if signed out.</p>
+                <p>Once the login page has loaded enter your email that you have signed up to ACC with, this is normally your company email, then click Next.</p>
+                <img src="../assets/media/autodesk_login1.PNG" alt="">
+                <p>For Aureos users you will be redirected to Micorsoft 365 as we have Single Sign On (SSO) enabled, please enter your Microsoft credentials to continue loggining in.</p>
+                <p>For non-Auroes users, this will depend on what configurations your company has setup, in most instances your will just login using the password you created when you first registered your account. If you can't remember please use the 'Forgot Password' option to reset it.</p>
+                <p>Once youve successfully logged in your will be redirected to the ACC Homepage, where you can see your Dashboard for items assgined to you or go to the projects tab to see the projects you have access to.</p>
+            </div>
+            <div id="section4_video" class="section-content">
+             <h3>Watch the Video</h3>
+             <iframe 
+                src="https://www.youtube.com/embed/um0G1ZfnbM0" 
+                title="YouTube video player" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+             </iframe>
+            </div>
+        </div>
+        <div id="section5" class="panel-content">
+            <h2>Understanding Metadata &amp; Attributes</h2>
+            <p>Select an option below</p>
+            <div class="mediaOptions">
+                <button type="button" id="section5_text_btn" onclick="showPanelSection('section5_text')" class="mediaOption">Written Guide</button>
+                <button type="button" id="section5_video_btn" onclick="showPanelSection('section5_video')" class="mediaOption">Walk through video</button>
+            </div>
+            <div id="section5_text" class="section-content">
+                <h3>How to Login</h3>
+                <p>First go to the <a href="https://acc.autodesk.eu/home">ACC hompage</a>, then you will be redirected to the login page if signed out.</p>
+                <p>Once the login page has loaded enter your email that you have signed up to ACC with, this is normally your company email, then click Next.</p>
+                <img src="../assets/media/autodesk_login1.PNG" alt="">
+                <p>For Aureos users you will be redirected to Micorsoft 365 as we have Single Sign On (SSO) enabled, please enter your Microsoft credentials to continue loggining in.</p>
+                <p>For non-Auroes users, this will depend on what configurations your company has setup, in most instances your will just login using the password you created when you first registered your account. If you can't remember please use the 'Forgot Password' option to reset it.</p>
+                <p>Once youve successfully logged in your will be redirected to the ACC Homepage, where you can see your Dashboard for items assgined to you or go to the projects tab to see the projects you have access to.</p>
+            </div>
+            <div id="section5_video" class="section-content">
+             <h3>Watch the Video</h3>
+             <iframe 
+                src="https://www.youtube.com/embed/um0G1ZfnbM0" 
+                title="YouTube video player" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+             </iframe>
+            </div>
+        </div>
+        <div id="section6" class="panel-content">
+            <h2>Uploading Documents</h2>
+            <p>Select an option below</p>
+            <div class="mediaOptions">
+                <button type="button" id="section6_text_btn" onclick="showPanelSection('section6_text')" class="mediaOption">Written Guide</button>
+                <button type="button" id="section6_video_btn" onclick="showPanelSection('section6_video')" class="mediaOption">Walk through video</button>
+            </div>
+            <div id="section6_text" class="section-content">
+                <h3>How to Login</h3>
+                <p>First go to the <a href="https://acc.autodesk.eu/home">ACC hompage</a>, then you will be redirected to the login page if signed out.</p>
+                <p>Once the login page has loaded enter your email that you have signed up to ACC with, this is normally your company email, then click Next.</p>
+                <img src="../assets/media/autodesk_login1.PNG" alt="">
+                <p>For Aureos users you will be redirected to Micorsoft 365 as we have Single Sign On (SSO) enabled, please enter your Microsoft credentials to continue loggining in.</p>
+                <p>For non-Auroes users, this will depend on what configurations your company has setup, in most instances your will just login using the password you created when you first registered your account. If you can't remember please use the 'Forgot Password' option to reset it.</p>
+                <p>Once youve successfully logged in your will be redirected to the ACC Homepage, where you can see your Dashboard for items assgined to you or go to the projects tab to see the projects you have access to.</p>
+            </div>
+            <div id="section6_video" class="section-content">
+             <h3>Watch the Video</h3>
+             <iframe 
+                src="https://www.youtube.com/embed/um0G1ZfnbM0" 
+                title="YouTube video player" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+             </iframe>
+            </div>
+        </div>
+        <div id="section7" class="panel-content">
+            <h2>Logging In to ACC</h2>
+            <p>Select an option below</p>
+            <div class="mediaOptions">
+                <button type="button" id="section7_text_btn" onclick="showPanelSection('section7_text')" class="mediaOption">Written Guide</button>
+                <button type="button" id="section7_video_btn" onclick="showPanelSection('section7_video')" class="mediaOption">Walk through video</button>
+            </div>
+            <div id="section7_text" class="section-content">
+                <h3>How to Login</h3>
+                <p>First go to the <a href="https://acc.autodesk.eu/home">ACC hompage</a>, then you will be redirected to the login page if signed out.</p>
+                <p>Once the login page has loaded enter your email that you have signed up to ACC with, this is normally your company email, then click Next.</p>
+                <img src="../assets/media/autodesk_login1.PNG" alt="">
+                <p>For Aureos users you will be redirected to Micorsoft 365 as we have Single Sign On (SSO) enabled, please enter your Microsoft credentials to continue loggining in.</p>
+                <p>For non-Auroes users, this will depend on what configurations your company has setup, in most instances your will just login using the password you created when you first registered your account. If you can't remember please use the 'Forgot Password' option to reset it.</p>
+                <p>Once youve successfully logged in your will be redirected to the ACC Homepage, where you can see your Dashboard for items assgined to you or go to the projects tab to see the projects you have access to.</p>
+            </div>
+            <div id="section7_video" class="section-content">
+             <h3>Watch the Video</h3>
+             <iframe 
+                src="https://www.youtube.com/embed/um0G1ZfnbM0" 
+                title="YouTube video player" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+             </iframe>
+            </div>
+        </div>
+        <div id="section8" class="panel-content">Summary and Next Steps.</div>
+    </div>
+  </section>
+
+    <div id="feedback">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+      <link rel="stylesheet" href="../assets/css/feedback.css">
+      <script src="../js/default.js"></script>
+      <a href="#" id="feedbackBtn"><i class="fa-solid fa-bug"></i></a>
+  
+        <!-- The Modal -->
+        <div id="feedbackModal" class="modal">
+          <div class="feedback-content">
+              <span class="close" id="closeModal">&times;</span>
+              <h2>Tool Feedback</h2>
+              <form id="feedbackForm">
+                  <label for="type" class="buglabel">Type:</label>
+                  <select id="type" name="type" required>
+                      <option value="Bug">Bug</option>
+                      <option value="Feature">Feature Request</option>
+                      <option value="Feedback">General Feedback</option>
+                  </select>
+  
+                  <label for="description" class="buglabel">What went wrong?</label>
+                  <textarea id="description" name="description" rows="5" required></textarea>
+  
+                  <label for="email">Please enter email so we can contact you if needed</label>
+                  <input type="email" name="email" id="userFeedbackEmail" placeholder="Your email..." required>
+  
+                  <label for="screenshot">Attach a screenshot (optional):</label>
+                  <input type="file" id="screenshot" name="screenshot" accept="image/*">
+  
+                  <button type="submit" class="feedbackBtn">Submit</button>
+              </form>
+  
+          </div>
+      </div>
+     </div>
+    <div id="appInfo"></div>
+    <!-- <a href="https://www.aureos.com/" target="_blank" rel="noopener noreferrer">
+        <img src="https://www.aureos.com/wp-content/themes/keltbray/assets/img/logo/AUREOS_logo_wh.svg" 
+             class="logo logo--white" 
+             alt="Aureos Logo">
+    </a> -->
+  </body>
+</html>

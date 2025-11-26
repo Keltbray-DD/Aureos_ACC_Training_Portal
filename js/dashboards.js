@@ -41,7 +41,7 @@ async function getTrainingRecordData() {
         headers: headers,
     };
 
-    const apiUrl = "https://prod-16.uksouth.logic.azure.com:443/workflows/09133fc849284dd2ba35cbde78a2f22e/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=yDoMfRRSiraqC8UjQfFUsir7drSC7qsoAl5j1l9UZ30";
+    const apiUrl = "https://default917b4d06d2e9475983a3e7369ed74e.8f.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/09133fc849284dd2ba35cbde78a2f22e/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=7qaG2x82obCusi-0bo5fRkUgfmTNmHv68htNW_zLhAU";
     //console.log(apiUrl)
     //console.log(requestOptions)
     responseData = await fetch(apiUrl, requestOptions)

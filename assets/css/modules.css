@@ -1,0 +1,135 @@
+.moduleSection{
+    margin: auto;
+    margin-top: 20px;
+    max-width: 90vw;
+    display: flex;
+    gap: 20px;
+}
+
+.panel{
+    border-radius: 20px;
+    background-color: white;
+    min-height: 500px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    border: 2px solid grey;
+     padding: 20px;
+}
+
+.panel h2{
+    margin-top: 0;
+}
+
+.side{
+    flex: 1;
+}
+
+
+
+ .training-module {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    padding: 2rem;
+    border-radius: 8px;
+    max-width: 700px;
+    margin: 2rem auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+ }
+
+ .training-module h2 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+ }
+
+ .module-sections {
+    list-style-type: none;
+    padding-left: 0;
+    transition: transform 0.5s ease;
+ }
+
+ .module-sections li {
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background-color: #ffffff;
+    border-left: 4px solid #3498db;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.module-sections li:hover{
+    transform: scale(1.02);
+    border-left: 4px solid rgb(7, 197, 7);
+    cursor: pointer;
+}
+
+.module-sections li.active{
+    border-left: 4px solid rgb(7, 197, 7);
+}
+
+ .module-sections h3 {
+    margin: 0 0 0.5rem;
+    color: #2980b9;
+ }
+
+ .module-sections p {
+    margin: 0;
+    color: #555;
+ }
+
+ .panel-content {
+ display: none;
+
+ }
+
+ .panel-content.active {
+ display: block;
+ }
+
+
+.main{
+    flex: 4;  
+}
+
+.general-list{
+    list-style-type:circle;
+    /* padding-left: 0; */
+}
+
+.mediaOptions{
+    width: 100%;
+    display: flex;
+    gap: 10px;
+}
+
+.mediaOptions button{
+    margin: auto;
+    width: 100%;
+    cursor: pointer;
+    padding: 5px;
+    border: 0;
+    border-bottom: 3px solid #2980b9;
+}
+
+.mediaOptions button:hover{
+    border-bottom: 3px solid rgb(7, 197, 7);
+    transform: scale(1.02);
+}
+
+.mediaOptions button.active{
+    border-bottom: 3px solid rgb(7, 197, 7);
+}
+
+.section-content{
+    display: none;
+}
+
+.section-content.active{
+    display: block;
+}
+
+.section-content iframe{
+    width: 100%;
+    min-height: 30vh
+}
+.section-content img{
+    margin: auto;
+}
