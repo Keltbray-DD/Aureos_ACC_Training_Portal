@@ -21,68 +21,50 @@
     <div class="profile-container" id="profileMenu">
     </div>
   </div>
-    <div class="titleContainer fade-in">
-      <h1>Welcome to the <br>Aureos ACC Training Portal</h1>
-      <p>One stop shop for all your ACC training needs</p>
-  
-
-    </div>
-    <div class="container sub fade-in">
-      <h2>Training Completion Forms</h2>
-      <div class="levels">
-        <!-- Level 1 -->
-        <div class="level">
-          <i class="fas fa-book"></i>
-          <h2>Level 1</h2>
-          <p>Acknowledgment to knowledge check you on the ACC level 1 training course.</p>
-          <button onclick="window.location.href='test-level1.html'">
-            Go to Level 1
-          </button>
-        </div>
-  
-        <!-- Level 2 -->
-        <div class="level">
-          <i class="fas fa-chalkboard-teacher"></i>
-          <h2>Level 2</h2>
-          <p>Acknowledgment to knowledge check you on the ACC level 2 training course.</p>
-          <button onclick="window.location.href='test-level2.html'">
-            Go to Level 2
-          </button>
-        </div>
-  
-        <!-- Level 3 -->
-        <!-- <div class="level">
-          <i class="fas fa-trophy"></i>
-          <h2>Level 3</h2>
-          <p>Advanced quiz for in-depth knowledge.</p>
-          <button onclick="window.location.href='test-level3.html'">
-            Go to Level 3
-          </button>
-        </div> -->
+    <div class="home-hero fade-in">
+      <div class="home-hero__icon"><i class="fas fa-graduation-cap"></i></div>
+      <div>
+        <h1>Welcome to the ACC Training Portal</h1>
+        <p>Your one-stop shop for Autodesk Construction Cloud training.</p>
       </div>
     </div>
-    <div class="container sub fade-in">
 
-      <h2>Training Admin</h2>
-      <div class="levels">
-        <div class="level">
-          <i class="fas fa-chalkboard-teacher"></i>
-          <h2>Request Training</h2>
-          <p>Self service request being added to training course for Level 1 or 2</p>
-          <button onclick="window.location.href='requestTraining.html'">
-            Request Training
-          </button>
+    <div class="home-panel fade-in">
+      <p class="home-section-label">Get started</p>
+      <div class="featured-card">
+        <div class="featured-card__icon"><i class="fas fa-calendar-plus"></i></div>
+        <div class="featured-card__text">
+          <h2>Request training</h2>
+          <p>Book yourself onto an upcoming Level 1 or Level 2 session.</p>
         </div>
-          <div class="level ">
-            <i class="fas fa-chalkboard-teacher"></i>
-            <h2>Training Dashboard</h2>
-            <p>Overview of Training Records. Passcode protected</p>
-            <button onclick="window.location.href='trainingDashboard.html'">
-              View Dashboard
-            </button>
-          </div>
+        <button class="featured-card__btn" onclick="window.location.href='requestTraining.html'">Book a session</button>
       </div>
 
+      <p class="home-section-label">Already attended? Submit your knowledge check</p>
+      <div class="home-grid">
+        <div class="home-card">
+          <div class="home-card__chip chip-blue"><i class="fas fa-book"></i></div>
+          <h3>Level 1</h3>
+          <p>Knowledge check for the Level 1 course.</p>
+          <button class="home-card__btn" onclick="window.location.href='test-level1.html'">Open Level 1</button>
+        </div>
+        <div class="home-card">
+          <div class="home-card__chip chip-teal"><i class="fas fa-certificate"></i></div>
+          <h3>Level 2</h3>
+          <p>Knowledge check for the Level 2 course.</p>
+          <button class="home-card__btn" onclick="window.location.href='test-level2.html'">Open Level 2</button>
+        </div>
+      </div>
+
+      <p class="home-section-label">Training admin</p>
+      <div class="home-grid">
+        <div class="home-card">
+          <div class="home-card__chip chip-purple"><i class="fas fa-chart-column"></i></div>
+          <h3>Training dashboard</h3>
+          <p>Records overview &middot; passcode protected.</p>
+          <button class="home-card__btn" onclick="window.location.href='trainingDashboard.html'">View dashboard</button>
+        </div>
+      </div>
     </div>
     <div id="feedback">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">

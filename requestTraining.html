@@ -23,41 +23,66 @@
         <div class="profile-container" id="profileMenu">
         </div>
       </div>
-    <div class="titleContainer  fade-in">
-      <h1>Training Request Form</h1>
-      <p>Please select a level below to see training dates available</p>
+
+    <div id="loadingScreen">
+      <div class="loading-panel">
+        <div class="loading-spinner-circle"></div>
+        <div class="loading-title">Loading training request form&hellip;</div>
+        <ul class="loading-steps" id="loadingSteps">
+          <li class="step pending" data-step="sessions"><span class="step-icon"></span><span class="step-label">Loading training sessions</span></li>
+          <li class="step pending" data-step="roles"><span class="step-icon"></span><span class="step-label">Loading role guidance</span></li>
+        </ul>
+      </div>
     </div>
-    <div class="container whatsCovered fade-in">
-        <h2>Whats covered at each level</h2>
-        <div class="whatsCoveredContent">
-            <div class="">
-                <h3>Level 1 Training</h3>
-                <ul>
-                    <li>Log in and access your project with ease</li>
-                    <li>Navigate ACC modules confidently</li>
-                   <li>Find, Share and View Files</li>
-                   <li>Upload files using the correct process</li>
-                   <li>Manage Project Emails</li>
-                   <li>Manage Notifications </li>
-                </ul>
+
+    <div class="home-hero fade-in">
+      <div class="home-hero__icon"><i class="fas fa-calendar-plus"></i></div>
+      <div>
+        <h1>Training Request Form</h1>
+        <p>Select a level to see available sessions and book your place.</p>
+      </div>
+    </div>
+    <div class="home-panel whatsCovered fade-in">
+        <h3>Please select what training session to register for</h3>
+        <button type="button" class="infoBtn" id="coveredBtn"><i class="fas fa-circle-info"></i> What's covered at each level</button>
+        <label>Please select which level you want to sign up for</label>
+        <div class="level-toggle">
+            <button type="button" class="lvlBtn" data-level="1">Level 1</button>
+            <button type="button" class="lvlBtn" data-level="2">Level 2</button>
+        </div>
+
+        <!-- Calendar (hidden until a level is chosen) -->
+        <div id="calendarWrap" class="calendar-wrap hidden">
+            <label>Select a date with available sessions, then choose a time</label>
+            <div class="calendar-nav">
+                <button type="button" id="prevMonth" aria-label="Previous month"><i class="fas fa-chevron-left"></i></button>
+                <span id="monthLabel"></span>
+                <button type="button" id="nextMonth" aria-label="Next month"><i class="fas fa-chevron-right"></i></button>
             </div>
-            <div class="">
-                <h3>Level 2 Training</h3>
-                <ul>
-                    <li>Reviewing files through structured Workflows</li>
-                    <li>Using the Mobile App </li>
-                   <li>Raising and tracking Issues</li>
-                   <li>Creating, responding to, and closing RFIs</li>
-                   <li>Using and publishing Mark-ups</li>
-                   <li>Adding and managing References</li>
-                </ul>
+            <div class="calendar-weekhead" id="weekHead"></div>
+            <div class="calendar-grid" id="calendarGrid"></div>
+            <div class="calendar-legend">
+                <span><span class="legend-dot"></span> Sessions available</span>
+                <span><span class="legend-box"></span> Selected day</span>
             </div>
         </div>
 
-        <p class="note">All users that require Level 2 training also need to complete Level 1 first</p>
+        <!-- Time slots for the selected day -->
+        <div id="slotList" class="slot-list"></div>
+
+        <!-- Sign-up step (hidden until a session is chosen) -->
+        <div id="signupStep" class="hidden">
+            <div id="selectedSummary" class="selected-summary"></div>
+            <input type="email" name="email" id="userEmail" placeholder="Enter your email for sign up" onchange="validateEmail()">
+            <p id="message"></p>
+            <div>
+                <button type="submit" id="submitBtn" value="" onclick="runAddUserToEvent()" disabled>Submit</button>
+            </div>
+        </div>
     </div>
-    <div class="container whatsCovered fade-in">
-        <h3>What level of training do I require based of my role</h3>
+    <div class="home-panel whatsCovered fade-in">
+        <h3>What level of training do I require based on my role</h3>
+        <p>Optional &mdash; use this to check the minimum level your role needs. You don't need to select a role to book; you can go straight to choosing a session above.</p>
         <div class="gallery-options-container">
             <div class="filters">
                 <input type="text" id="searchInput" placeholder="Search for role..." />
@@ -72,23 +97,37 @@
         <div class=" dropdown-docType" id="dropdownMenu"></div>
         <div id="roleTrainingLevel"></div>
     </div>
-    <div class="container whatsCovered fade-in">
-        <h3>Please select what training session to register for</h3>
-        <label for="levelSelect">Please select which level you want to sign up for</label>
-        <select name="level" id="levelSelect">
-            <option value="0" disabled selected>Select Level</option>
-            <option value="1">Level 1</option>
-            <option value="2">Level 2</option>
-        </select>
-        <label for="levelSelect">Please select a date from the options below</label>
-        <select name="level" id="levelDates" disabled>
 
-        </select>
-        <input type="email" name="email" id="userEmail" placeholder="Enter your email for sign up" onchange="validateEmail()" disabled>
-        <p id="message"></p>
-        <!-- Submit button (disabled by default) -->
-        <div>
-            <button type="submit" id="submitBtn" value="" onclick="runAddUserToEvent()" disabled>Submit</button>
+    <!-- What's covered modal -->
+    <div class="info-modal" id="coveredModal" role="dialog" aria-modal="true" aria-labelledby="coveredModalTitle">
+        <div class="info-modal-content">
+            <button type="button" class="info-close" id="coveredClose" aria-label="Close">&times;</button>
+            <h2 id="coveredModalTitle">What's covered at each level</h2>
+            <div class="whatsCoveredContent">
+                <div>
+                    <h3>Level 1 Training</h3>
+                    <ul>
+                        <li>Log in and access your project with ease</li>
+                        <li>Navigate ACC modules confidently</li>
+                        <li>Find, Share and View Files</li>
+                        <li>Upload files using the correct process</li>
+                        <li>Manage Project Emails</li>
+                        <li>Manage Notifications</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Level 2 Training</h3>
+                    <ul>
+                        <li>Reviewing files through structured Workflows</li>
+                        <li>Using the Mobile App</li>
+                        <li>Raising and tracking Issues</li>
+                        <li>Creating, responding to, and closing RFIs</li>
+                        <li>Using and publishing Mark-ups</li>
+                        <li>Adding and managing References</li>
+                    </ul>
+                </div>
+            </div>
+            <p class="note">All users that require Level 2 training also need to complete Level 1 first</p>
         </div>
     </div>
     <div id="appInfo"></div>
