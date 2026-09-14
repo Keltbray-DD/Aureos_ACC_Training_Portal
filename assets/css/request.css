@@ -70,11 +70,13 @@ label {
 
 .whatsCoveredContent {
   display: flex;
-  gap: 10px;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
 .whatsCoveredContent div{
-  margin: auto;
+  flex: 1 1 200px;
+  min-width: 200px;
 }
 
   .note{
@@ -313,8 +315,9 @@ label {
     align-items: center;
     gap: 8px;
   }
-  .infoBtn:hover {
+  .infoBtn:hover:not(:disabled) {
     background: #e2e8ee;
+    color: #0056b3;
   }
   .info-modal {
     display: none;

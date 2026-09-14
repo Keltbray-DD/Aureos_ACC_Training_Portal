@@ -3,7 +3,7 @@ let viewYear;
 let viewMonth;
 let selectedSession = null;
 let sessionsLoaded = false;
-const normalisedSessions = { 1: [], 2: [] };
+const normalisedSessions = { '1': [], '2A': [], '2B': [] };
 
 const CAL_MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 const CAL_WEEKDAYS = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
@@ -31,9 +31,10 @@ document.addEventListener('DOMContentLoaded', async function() {
     searchInput = document.getElementById('searchInput')
 
     // Wire up the controls straight away so they respond even while the
-    // session/role data is still loading.
+    // session/role data is still loading. Levels are keyed as strings
+    // ('1', '2A', '2B') so Level 2 can be split into its two variants.
     document.querySelectorAll('.lvlBtn').forEach(btn => {
-        btn.addEventListener('click', () => selectLevel(parseInt(btn.dataset.level, 10)))
+        btn.addEventListener('click', () => selectLevel(btn.dataset.level))
     })
     document.getElementById('prevMonth').addEventListener('click', () => changeMonth(-1))
     document.getElementById('nextMonth').addEventListener('click', () => changeMonth(1))
@@ -74,11 +75,9 @@ document.addEventListener('DOMContentLoaded', async function() {
 // not from a field on the event itself.
 function buildSessions() {
     const list = trainingList || {};
-    normalisedSessions[1] = normaliseBucket(list.Level1, 'Level 1', '1');
-    normalisedSessions[2] = [
-        ...normaliseBucket(list.Level2a, 'Level 2A', '2A'),
-        ...normaliseBucket(list.Level2b, 'Level 2B', '2B')
-    ];
+    normalisedSessions['1'] = normaliseBucket(list.Level1, 'Level 1', '1');
+    normalisedSessions['2A'] = normaliseBucket(list.Level2a, 'Level 2A', '2A');
+    normalisedSessions['2B'] = normaliseBucket(list.Level2b, 'Level 2B', '2B');
     sessionsLoaded = true;
 }
 
@@ -102,7 +101,7 @@ function selectLevel(level) {
     currentLevel = level;
     selectedSession = null;
     document.querySelectorAll('.lvlBtn').forEach(b => {
-        b.classList.toggle('active', parseInt(b.dataset.level, 10) === level);
+        b.classList.toggle('active', b.dataset.level === level);
     });
     document.getElementById('slotList').innerHTML = '';
     resetSignup();
@@ -300,7 +299,11 @@ async function getEventDetails(){
 
     const requestOptions = {
         method: 'GET',
-        headers: headers
+        headers: headers,
+        // Always fetch a fresh session list. Without this the browser can serve
+        // a cached response, so newly added sessions/dates only appear after a
+        // hard refresh (Ctrl+F5).
+        cache: 'no-store'
     };
 
     const apiUrl = "https://default917b4d06d2e9475983a3e7369ed74e.8f.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/2153356072ec47c5846c5870941fccba/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=lIcs5at2Z0KVOKhDU5ZpEH_4ct0TC1ZGGIaTaUZwChA";

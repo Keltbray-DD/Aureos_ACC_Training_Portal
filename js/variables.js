@@ -1,5 +1,5 @@
 const appName = "Forma Training Portal";
-const appVersion = "v1.4.0";
+const appVersion = "v1.5.0";
 const level1Version = 1
 const level2Version = 1
 
