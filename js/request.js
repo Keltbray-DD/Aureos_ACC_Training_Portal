@@ -26,6 +26,93 @@ function hideLoading() {
     if (s) s.classList.remove('show');
 }
 
+// ---- session loading with automatic retry + manual refresh ----
+const SESSION_LOAD_ATTEMPTS = 3;      // total tries before showing the error notice
+const SESSION_RETRY_DELAY_MS = 1500;  // base delay, grows with each attempt
+let sessionsLoading = false;
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function totalSessionCount() {
+    return Object.values(normalisedSessions)
+        .reduce((n, arr) => n + (Array.isArray(arr) ? arr.length : 0), 0);
+}
+
+function hideSessionError() {
+    const el = document.getElementById('sessionError');
+    if (el) { el.classList.add('hidden'); el.innerHTML = ''; }
+}
+
+// failed === true  -> the fetch itself errored (network / HTTP)
+// failed === false -> the fetch worked but returned no upcoming sessions
+function showSessionError(failed) {
+    const el = document.getElementById('sessionError');
+    if (!el) return;
+    el.classList.remove('hidden');
+    el.innerHTML = failed
+        ? '<i class="fas fa-triangle-exclamation"></i> We couldn\'t load the training sessions. '
+          + 'Please check your connection and use <strong>Refresh sessions</strong> to try again.'
+        : '<i class="fas fa-circle-info"></i> No upcoming sessions are showing right now. '
+          + 'Use <strong>Refresh sessions</strong> to check again.';
+}
+
+// Loads the session list, retrying automatically while it comes back empty
+// (covers a failed fetch or a transient empty response from Power Automate).
+// Also invoked by the manual "Refresh sessions" button.
+async function loadSessions() {
+    if (sessionsLoading) return false;
+    sessionsLoading = true;
+
+    const refreshBtn = document.getElementById('refreshSessions');
+    if (refreshBtn) {
+        refreshBtn.disabled = true;
+        refreshBtn.dataset.idleLabel = refreshBtn.dataset.idleLabel || refreshBtn.innerHTML;
+        refreshBtn.innerHTML = '<i class="fas fa-rotate-right fa-spin"></i> Loading&hellip;';
+    }
+
+    hideSessionError();
+    setLoadingStep('sessions', 'active');
+
+    let fetchFailed = false;
+    try {
+        for (let attempt = 1; attempt <= SESSION_LOAD_ATTEMPTS; attempt++) {
+            fetchFailed = false;
+            try {
+                trainingList = await getEventDetails();
+            } catch (err) {
+                fetchFailed = true;
+                trainingList = null;
+                console.error(`Session load attempt ${attempt} failed:`, err);
+            }
+            buildSessions();
+
+            if (totalSessionCount() > 0) {
+                setLoadingStep('sessions', 'done');
+                if (currentLevel !== null) selectLevel(currentLevel);
+                return true;
+            }
+
+            if (attempt < SESSION_LOAD_ATTEMPTS) {
+                await sleep(SESSION_RETRY_DELAY_MS * attempt);
+            }
+        }
+
+        // Exhausted all attempts with no sessions to show.
+        setLoadingStep('sessions', 'done');
+        if (currentLevel !== null) selectLevel(currentLevel);
+        showSessionError(fetchFailed);
+        return false;
+    } finally {
+        sessionsLoading = false;
+        if (refreshBtn) {
+            refreshBtn.disabled = false;
+            refreshBtn.innerHTML = refreshBtn.dataset.idleLabel || 'Refresh sessions';
+        }
+    }
+}
+
 document.addEventListener('DOMContentLoaded', async function() {
     roleDropdown = document.getElementById('dropdownMenu')
     searchInput = document.getElementById('searchInput')
@@ -38,6 +125,10 @@ document.addEventListener('DOMContentLoaded', async function() {
     })
     document.getElementById('prevMonth').addEventListener('click', () => changeMonth(-1))
     document.getElementById('nextMonth').addEventListener('click', () => changeMonth(1))
+
+    // Manual "Refresh sessions" fallback if dates don't load.
+    const refreshBtn = document.getElementById('refreshSessions')
+    if (refreshBtn) refreshBtn.addEventListener('click', () => loadSessions())
 
     // "What's covered at each level" modal
     const coveredModal = document.getElementById('coveredModal')
@@ -54,12 +145,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     // if a level was already chosen while it was loading.
     showLoading()
     try {
-        setLoadingStep('sessions', 'active')
-        trainingList = await getEventDetails()
-        console.log(trainingList)
-        buildSessions()
-        setLoadingStep('sessions', 'done')
-        if (currentLevel !== null) selectLevel(currentLevel)
+        await loadSessions()
 
         setLoadingStep('roles', 'active')
         roleData = await getRoleData()
@@ -307,20 +393,14 @@ async function getEventDetails(){
     };
 
     const apiUrl = "https://default917b4d06d2e9475983a3e7369ed74e.8f.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/2153356072ec47c5846c5870941fccba/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=lIcs5at2Z0KVOKhDU5ZpEH_4ct0TC1ZGGIaTaUZwChA";
-    //console.log(apiUrl)
-    //console.log(requestOptions)
-    responseData = await fetch(apiUrl,requestOptions)
-        .then(response => response.json())
-        .then(data => {
-            const JSONdata = data
-        //console.log(JSONdata)
-        //console.log(JSONdata.uploadKey)
-        //console.log(JSONdata.urls)
-        return JSONdata
-        })
-        .catch(error => console.error('Error fetching data:', error));
 
-    return responseData
+    // Let failures propagate so loadSessions() can retry rather than silently
+    // leaving the calendar empty.
+    const response = await fetch(apiUrl, requestOptions);
+    if (!response.ok) {
+        throw new Error('Session request failed with status ' + response.status);
+    }
+    return await response.json();
     }
 
     function validateEmail() {

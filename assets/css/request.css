@@ -319,6 +319,51 @@ label {
     background: #e2e8ee;
     color: #0056b3;
   }
+
+  .refresh-row {
+    margin: 4px 0 2px;
+  }
+  .refreshBtn {
+    width: auto;
+    margin: 0;
+    padding: 8px 14px;
+    background: #eef2f6;
+    color: #0056b3;
+    border: 1px solid #d8e0e8;
+    border-radius: 4px;
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .refreshBtn:hover:not(:disabled) {
+    background: #e2e8ee;
+    color: #0056b3;
+  }
+  .refreshBtn:disabled {
+    background: #eef2f6;
+    color: #8a97a6;
+    cursor: progress;
+  }
+  .fa-spin {
+    animation: fa-spin 1s linear infinite;
+  }
+  @keyframes fa-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  .session-error {
+    margin: 10px 0 0;
+    padding: 12px 14px;
+    border-radius: 4px;
+    background: #fff4f4;
+    border: 1px solid #f3c2c2;
+    color: #a12622;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
   .info-modal {
     display: none;
     position: fixed;

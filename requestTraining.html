@@ -52,6 +52,12 @@
             <button type="button" class="lvlBtn" data-level="2B">Level 2B</button>
         </div>
 
+        <!-- Manual fallback if sessions don't load automatically -->
+        <div class="refresh-row">
+            <button type="button" id="refreshSessions" class="refreshBtn"><i class="fas fa-rotate-right"></i> Refresh sessions</button>
+        </div>
+        <div id="sessionError" class="session-error hidden"></div>
+
         <!-- Calendar (hidden until a level is chosen) -->
         <div id="calendarWrap" class="calendar-wrap hidden">
             <label>Select a date with available sessions, then choose a time</label>
